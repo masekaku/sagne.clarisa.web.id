@@ -12,10 +12,10 @@ const SOURCE_BASE_URL = {
     quax: "https://qu.ax/"
 };
 
-// Default ekstensi
+// Default ekstensi video
 const DEFAULT_EXTENSION = ".mp4";
 
-// Double-tap play/pause mobile
+// Double-tap play/pause di mobile
 let lastTap = 0;
 wrapper.addEventListener('touchend', () => {
     const currentTime = new Date().getTime();
