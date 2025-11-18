@@ -1,14 +1,19 @@
 {
-  "name": "nama-proyek-video",
+  "name": "fullscreen-video-player",
   "version": "1.0.0",
-  // >>> Tambahkan baris ini:
+  "description": "Pemutar Video Layar Penuh Dinamis",
+  "main": "video-loader.js",
   "type": "module", 
-  // <<<
-  "description": "Pemutar Video Layar Penuh",
-  "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "video",
+    "tailwind",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "fs": "^0.0.1-security",
     "path": "^0.12.7"
