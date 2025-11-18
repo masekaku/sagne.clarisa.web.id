@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "routes": [
+    {
+      "pattern": "/f/:id*",
+      "pathname": "/index.html"
+    }
+  ]
+}
