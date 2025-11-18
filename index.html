@@ -1,19 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Player</title>
+<title>Pemutar Video Layar Penuh</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-
-<div id="video-wrapper">
-  <video id="video" controls autoplay muted playsinline></video>
-  <div id="tap-indicator" class="double-tap-indicator">▶️</div>
+<body class="bg-black m-0 p-0 w-screen h-screen overflow-hidden flex items-center justify-center">
+    
+<div id="loadingMessage" class="absolute z-10 p-4 bg-gray-800 text-white rounded-lg text-xl">
+  Memuat video... Tunggu sebentar.
 </div>
 
-<script src="/js/player.js"></script>
+<div id="video-wrapper" class="w-screen h-screen flex justify-center items-center bg-black relative">
+  <video id="video" controls autoplay muted playsinline style="display: none;"></video>
+  
+  <div id="tap-indicator" class="double-tap-indicator">▶️</div> 
+</div>
+
+<script src="video-loader.js"></script>
+
 </body>
 </html>
