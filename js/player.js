@@ -8,7 +8,8 @@ const videoId = getVideoIdFromQuery();
 
 // Mapping source ke base URL
 const SOURCE_BASE_URL = {
-    videy: "https://cdn.videy.co/"
+        videy: "https://cdn.videy.co/",
+        quax: "https://qu.ax/"
 };
 
 // Optional: bisa tambahkan EXTENSION default
