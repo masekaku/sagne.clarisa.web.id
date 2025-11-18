@@ -1,7 +1,7 @@
 // Ambil videoID dari query string ?videoID=
 export function getVideoIdFromQuery() {
     const urlParams = new URLSearchParams(window.location.search);
-    return parseInt(urlParams.get('videoID')) || 1; // default 1 jika tidak ada
+    return urlParams.get('videoID'); // string
 }
 
 // Load daftar video dari JSON
