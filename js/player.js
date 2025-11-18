@@ -1,36 +1,38 @@
-import { getVideoIdFromPath, loadVideoList } from './utils.js';
+import { getVideoIdFromQuery, loadVideoList } from './utils.js';
 
-const video = document.getElementById('video');
+const videoElement = document.getElementById('video');
 const wrapper = document.getElementById('video-wrapper');
 const tapIndicator = document.getElementById('tap-indicator');
 
-const videoId = getVideoIdFromPath();
+const videoId = getVideoIdFromQuery();
 
-// Double-tap play/pause di mobile
+// Double-tap play/pause untuk mobile
 let lastTap = 0;
 wrapper.addEventListener('touchend', () => {
-  const currentTime = new Date().getTime();
-  const tapLength = currentTime - lastTap;
-  if (tapLength < 300 && tapLength > 0) {
-    if (video.paused) {
-      video.play();
-      tapIndicator.textContent = "▶️";
-    } else {
-      video.pause();
-      tapIndicator.textContent = "⏸️";
+    const currentTime = new Date().getTime();
+    const tapLength = currentTime - lastTap;
+    if (tapLength < 300 && tapLength > 0) {
+        if (videoElement.paused) {
+            videoElement.play();
+            tapIndicator.textContent = "▶️";
+        } else {
+            videoElement.pause();
+            tapIndicator.textContent = "⏸️";
+        }
+        tapIndicator.style.opacity = 1;
+        setTimeout(() => { tapIndicator.style.opacity = 0; }, 600);
     }
-    tapIndicator.style.opacity = 1;
-    setTimeout(() => { tapIndicator.style.opacity = 0; }, 600);
-  }
-  lastTap = currentTime;
+    lastTap = currentTime;
 });
 
-// Load video sesuai ID
+// Load video dari JSON sesuai videoID
 loadVideoList().then(videos => {
-  const selectedVideo = videos.find(v => v.id === videoId);
-  if (selectedVideo) {
-    video.src = selectedVideo.url;
-    video.load();
-    video.play().catch(() => {});
-  }
+    const selectedVideo = videos.find(v => v.id === videoId);
+    if (!selectedVideo) {
+        console.error('Video not found');
+        return;
+    }
+    videoElement.src = selectedVideo.url;
+    videoElement.load();
+    videoElement.play().catch(() => {});
 });
