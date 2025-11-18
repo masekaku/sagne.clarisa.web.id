@@ -6,6 +6,14 @@ const tapIndicator = document.getElementById('tap-indicator');
 
 const videoId = getVideoIdFromQuery();
 
+// Mapping source ke base URL
+const SOURCE_BASE_URL = {
+    videy: "https://cdn.videy.co/"
+};
+
+// Optional: bisa tambahkan EXTENSION default
+const DEFAULT_EXTENSION = ".mp4";
+
 // Double-tap play/pause untuk mobile
 let lastTap = 0;
 wrapper.addEventListener('touchend', () => {
@@ -25,14 +33,21 @@ wrapper.addEventListener('touchend', () => {
     lastTap = currentTime;
 });
 
-// Load video dari JSON sesuai videoID
+// Load video sesuai videoID dari JSON
 loadVideoList().then(videos => {
     const selectedVideo = videos.find(v => v.id === videoId);
     if (!selectedVideo) {
         console.error('Video not found');
         return;
     }
-    videoElement.src = selectedVideo.url;
+
+    const baseUrl = SOURCE_BASE_URL[selectedVideo.source];
+    if (!baseUrl) {
+        console.error('Source unknown:', selectedVideo.source);
+        return;
+    }
+
+    videoElement.src = `${baseUrl}${selectedVideo.id}${DEFAULT_EXTENSION}`;
     videoElement.load();
     videoElement.play().catch(() => {});
 });
