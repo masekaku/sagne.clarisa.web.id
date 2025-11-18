@@ -8,14 +8,14 @@ const videoId = getVideoIdFromQuery();
 
 // Mapping source ke base URL
 const SOURCE_BASE_URL = {
-        videy: "https://cdn.videy.co/",
-        quax: "https://qu.ax/"
+    videy: "https://cdn.videy.co/",
+    quax: "https://qu.ax/"
 };
 
-// Optional: bisa tambahkan EXTENSION default
+// Default ekstensi
 const DEFAULT_EXTENSION = ".mp4";
 
-// Double-tap play/pause untuk mobile
+// Double-tap play/pause mobile
 let lastTap = 0;
 wrapper.addEventListener('touchend', () => {
     const currentTime = new Date().getTime();
@@ -44,7 +44,7 @@ loadVideoList().then(videos => {
 
     const baseUrl = SOURCE_BASE_URL[selectedVideo.source];
     if (!baseUrl) {
-        console.error('Source unknown:', selectedVideo.source);
+        console.error('Unknown source:', selectedVideo.source);
         return;
     }
 
