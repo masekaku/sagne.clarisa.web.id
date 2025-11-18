@@ -1,0 +1,16 @@
+{
+  "name": "nama-proyek-video",
+  "version": "1.0.0",
+  // >>> Tambahkan baris ini:
+  "type": "module", 
+  // <<<
+  "description": "Pemutar Video Layar Penuh",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
