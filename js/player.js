@@ -47,7 +47,7 @@ class ModularVideoPlayer {
                     const randomVideo = videos[Math.floor(Math.random() * videos.length)];
                     videoId = randomVideo.id;
                     // Update URL tanpa reload page
-                    window.history.replaceState({}, '', `?videoID=${videoId}`);
+                    window.history.replaceState({}, '', `/?videoID=${videoId}`);
                 }
             }
 
@@ -70,6 +70,9 @@ class ModularVideoPlayer {
             try {
                 await this.videoElement.play();
                 this.trackHistatsEvent('play');
+                
+                // Add playing class untuk styling
+                this.videoElement.classList.add('video-playing');
             } catch (error) {
                 console.log('Autoplay prevented, waiting for user interaction:', error);
                 
@@ -91,14 +94,20 @@ class ModularVideoPlayer {
     setupEventListeners() {
         // Double-tap untuk play/pause di mobile
         let lastTap = 0;
-        this.videoElement.addEventListener('touchend', (event) => {
+        let tapTimeout;
+        
+        this.videoElement.addEventListener('touchstart', (event) => {
+            clearTimeout(tapTimeout);
             const currentTime = new Date().getTime();
             const tapLength = currentTime - lastTap;
-            if (tapLength < 500 && tapLength > 0) {
+            
+            if (tapLength < 300 && tapLength > 0) {
                 event.preventDefault();
                 this.togglePlayPause();
+                lastTap = 0;
+            } else {
+                lastTap = currentTime;
             }
-            lastTap = currentTime;
         });
 
         // Track play events untuk analytics
@@ -106,10 +115,19 @@ class ModularVideoPlayer {
             this.trackHistatsEvent('play');
         });
 
+        this.videoElement.addEventListener('pause', () => {
+            this.trackHistatsEvent('pause');
+        });
+
         // Handle video errors
         this.videoElement.addEventListener('error', (e) => {
             console.error('Video error:', e);
             this.trackHistatsEvent('error');
+        });
+
+        // Handle video end
+        this.videoElement.addEventListener('ended', () => {
+            this.trackHistatsEvent('ended');
         });
     }
 
@@ -125,6 +143,7 @@ class ModularVideoPlayer {
         if (window._Hasync && this.currentVideoId) {
             try {
                 _Hasync.push(['_trackEvent', 'video', action, this.currentVideoId]);
+                console.log(`Tracked: ${action} for video ${this.currentVideoId}`);
             } catch (error) {
                 console.error('Histats tracking error:', error);
             }
