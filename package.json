@@ -1,21 +1,16 @@
 {
-  "name": "fullscreen-video-player",
+  "name": "modular-video-player",
   "version": "1.0.0",
-  "description": "Pemutar Video Layar Penuh Dinamis",
-  "main": "video-loader.js",
-  "type": "module", 
+  "description": "Modular video player for Vercel",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vercel dev",
+    "start": "vercel dev"
   },
-  "keywords": [
-    "video",
-    "tailwind",
-    "nodejs"
-  ],
-  "author": "",
-  "license": "ISC",
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
-    "fs": "^0.0.1-security",
-    "path": "^0.12.7"
+    "@vercel/node": "^3.0.0"
   }
 }
