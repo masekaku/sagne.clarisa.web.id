@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vercel dev",
-    "start": "vercel dev",
-    "build": "mkdir -p public && cp index.html public/ && cp -r css js public/ && cp videos.json public/"
+    "start": "vercel dev"
   },
   "engines": {
     "node": "22.x"
