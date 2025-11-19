@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vercel dev",
     "start": "vercel dev",
-    "build": "echo 'Build completed - using public folder'"
+    "build": "mkdir -p public && cp index.html public/ && cp -r css js public/ && cp videos.json public/"
   },
   "engines": {
     "node": "22.x"
