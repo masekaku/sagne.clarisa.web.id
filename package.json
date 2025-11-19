@@ -2,10 +2,11 @@
   "name": "modular-video-player",
   "version": "1.0.0",
   "description": "Modular video player for Vercel",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
     "dev": "vercel dev",
-    "start": "vercel dev"
+    "start": "vercel dev",
+    "build": "echo 'No build step required'"
   },
   "engines": {
     "node": "22.x"
