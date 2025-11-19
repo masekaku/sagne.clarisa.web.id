@@ -1,4 +1,4 @@
-const videos = require('../videos.json');
+import videosData from '../videos.json' assert { type: 'json' };
 
 export default async function handler(req, res) {
   const { videoID } = req.query;
@@ -7,7 +7,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'videoID parameter is required' });
   }
 
-  const video = videos.find(v => v.id === videoID);
+  const video = videosData.find(v => v.id === videoID);
   
   if (!video) {
     return res.status(404).json({ error: 'Video not found' });
