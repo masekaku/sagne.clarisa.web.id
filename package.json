@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vercel dev",
     "start": "vercel dev",
-    "build": "echo 'No build step required'"
+    "build": "echo 'Build completed - using public folder'"
   },
   "engines": {
     "node": "22.x"
