@@ -1,24 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "version": 2,
-  "builds": [
+  "buildCommand": "npm run build",
+  "outputDirectory": "public",
+  "rewrites": [
     {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "public/**/*",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/f/(?<videoID>[^/]+)",
-      "dest": "/public/index.html?videoID=$videoID"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/$1"
+      "source": "/f/:videoID",
+      "destination": "/index.html?videoID=:videoID"
     }
   ]
 }
